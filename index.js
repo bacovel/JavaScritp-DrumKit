@@ -10,11 +10,13 @@ function clickMe() {
     var buttonInnerHtml = this.innerHTML;
 
     makeSound(buttonInnerHtml);
+    makeAnimation(buttonInnerHtml);
 }
 
 // Verifica daca o tasta a fost apasata si care
-document.addEventListener("keypress", function(event) {
+document.addEventListener("keypress", function (event) {
     makeSound(event.key);
+    makeAnimation(event.key);
 });
 
 
@@ -59,4 +61,17 @@ function makeSound(key) {
             console.log(buttonInnerHtml);
             break;
     }
+}
+
+function makeAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        removeclass(activeButton);
+    }, 100);
+    
+}
+
+function removeclass(element){
+    element.classList.remove("pressed");
 }
